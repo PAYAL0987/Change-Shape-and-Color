@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Shape and Color</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .shape {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        #shape-box {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Change Shape and Color</h1>
+        <div id="shape-box"></div>
+        <div class="buttons">
+            <button onclick="changeColor()">Change Color</button>
+            <button onclick="changeShape()">Change Shape</button>
+        </div>
+    </div>
+
+    <script>
+        // Array of predefined colors
+        const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'cyan', 'magenta'];
+
+        // Array of shapes
+        const shapes = ['square', 'circle', 'triangle', 'rectangle', 'diamond'];
+
+        const shapeBox = document.getElementById('shape-box');
+
+        // Function to change the color randomly
+        function changeColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            shapeBox.style.backgroundColor = randomColor;
+        }
+
+        // Function to change the shape randomly
+        function changeShape() {
+            const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+            
+            shapeBox.style.clipPath = getShapeClipPath(randomShape);
+        }
+
+        // Function to return clip-path based on shape
+        function getShapeClipPath(shape) {
+            switch (shape) {
+                case 'square':
+                    return 'none';
+                case 'circle':
+                    return 'circle(50%)';
+                case 'triangle':
+                    return 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                case 'rectangle':
+                    return 'none';
+                case 'diamond':
+                    return 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)';
+                default:
+                    return 'none';
+            }
+        }
+    </script>
+</body>
+</html>
